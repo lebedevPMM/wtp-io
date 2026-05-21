@@ -1,0 +1,16 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Ostashov;Ilia;;;
+FN:Ilia Ostashov
+ORG:WTP
+TITLE:Founder & Private Client Advisor
+EMAIL;TYPE=INTERNET,WORK,pref:io@wtp.ae
+TEL;TYPE=CELL,VOICE,pref:+971585058641
+TEL;TYPE=WORK,VOICE:+971585058641
+URL;TYPE=WORK:https://io.wtp.ae
+URL;TYPE=Telegram:https://t.me/iamoio
+URL;TYPE=Company:https://wtp.ae
+ADR;TYPE=WORK:;;Dubai;;;;United Arab Emirates
+NOTE:UAE-based system for entrepreneurs, investors and HNWI — banking, real estate, corporate structures, residency, asset protection. Direct line for non-standard banking profiles, multi-country structures and long-term asset control. // io.wtp.ae
+REV:2026-05-21T00:00:00Z
+END:VCARD

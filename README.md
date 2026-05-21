@@ -1,0 +1,147 @@
+# io.wtp.ae — Ilia Ostashov Personal Handoff Kit
+
+Personal contact-handoff page for **Ilia Ostashov**, Founder & Private Client Advisor at WTP.
+Mirrors the MT35 `ceo.wtp.ae` pattern (Ivan Olenichev) with founder-level positioning.
+
+**Live (after deploy):**
+- Production: <https://io.wtp.ae>
+- Cloudflare Pages: <https://wtp-io.pages.dev>
+- Mirror: <https://lebedevpmm.github.io/wtp-io/>
+
+Designed for two scenarios:
+1. **Quick meet handoff** — opponent may not remember who Ilia is. Page re-introduces him in 5 seconds.
+2. **Post-meeting / event handoff** — partner or end-client follow-up, English only, optional event toggle via `?event=forum&msg=...`.
+
+---
+
+## Distribution Kit (in `qr/`)
+
+| File | When to use |
+|---|---|
+| `qr-io-wtp-ae-card.png` | **Print-ready card** — QR + URL + name. A6 / business card back. |
+| `qr-io-wtp-ae-brand.png` | **Branded QR** (cream + W monogram). For decks, slides, email signature. |
+| `qr-io-wtp-ae-bw.png` | **Pure black on white** — most reliable scan, smallest size, any printer. |
+| `qr-io-wtp-ae-clean.png` | **Cream, no logo** — softest look, max scan reliability. |
+| `ilia-ostashov.vcf` | **vCard** — open on iPhone/Android → "Add to Contacts". Saves Ilia in one tap. |
+
+All QR codes encode `https://io.wtp.ae` with **30% error correction (ECC=H)** — they survive logo overlay, partial damage, low-contrast surfaces.
+
+---
+
+## NFC Tag — Tap-to-Open (iPhone & Android)
+
+Modern iPhones (XS and newer, iOS 14+) read NFC URL tags **without any app**.
+Tap the back of the phone on the tag → notification appears → tap to open `io.wtp.ae`.
+
+### Tag selection
+
+| Tag chip | Storage | Best for |
+|---|---|---|
+| **NTAG213** | 144 bytes | Stickers, business cards (cheapest) |
+| **NTAG215** | 504 bytes | Recommended — fits URL + future expansion |
+| **NTAG216** | 888 bytes | Overkill for one URL |
+
+Forms:
+- **Sticker** — 25 mm round, glue under business card / phone case / event badge
+- **PVC card** — credit-card sized, looks like a metal/black business card with WTP logo on front
+- **Keyring fob** — for daily-carry handoff
+
+Where to buy: Aliexpress / Amazon / GoToTags. Search `NTAG215 sticker 25mm` (~$1–2 each in bulk).
+
+### How to program (one-time, ~2 min per tag)
+
+**On iPhone:**
+1. Install free app **"NFC Tools"** by wakdev (App Store)
+2. Open → **Write** → **Add a record** → **URL / URI**
+3. Enter `https://io.wtp.ae` → OK
+4. Tap **Write** → hold the tag against the top of the iPhone
+5. App confirms write. Done.
+
+**On Android (faster):** same app **"NFC Tools"** by wakdev (Play Store), same flow. Android writes faster and more reliably than iOS for bulk programming.
+
+### Optional: lock the tag (prevents accidental overwrite)
+After writing, in NFC Tools → **Other** → **Lock tag** → confirm. Tag is read-only forever.
+
+---
+
+## vCard (.vcf) — Save Contact in One Tap
+
+`ilia-ostashov.vcf` contains: name, role, company, email, phone (WA), Telegram URL, Dubai address.
+
+**Use it for:**
+- **Email signature** — attach the .vcf, recipient taps once → contact saved with all channels.
+- **AirDrop on iPhone** — open the .vcf in Files → share → AirDrop to opponent's iPhone → they tap "Add Contact".
+- **WhatsApp / Telegram chat** — send as a file.
+- **Live serving** — accessible at <https://io.wtp.ae/ilia-ostashov.vcf> after deploy.
+
+To regenerate after edits: just edit the `.vcf` text file. Standard vCard 3.0 format.
+
+---
+
+## Event-mode toggle
+
+Append `?event=forum` to the URL to reveal a follow-up banner at the bottom of the page:
+
+```
+https://io.wtp.ae/?event=forum
+```
+
+Edit the `presets` object inside `<script>` in `index.html` to add more events.
+
+You can also pass a free-text follow-up via `?event=any&msg=Custom%20note` (≤140 chars).
+
+---
+
+## Print Spec
+
+| Use | Size | Format |
+|---|---|---|
+| Business card back | 85×55 mm at 300 dpi | `qr-io-wtp-ae-card.png` (resize, keep aspect) |
+| A6 handout | 105×148 mm at 300 dpi | `qr-io-wtp-ae-card.png` directly |
+| Sticker on laptop / device | 50×50 mm | `qr-io-wtp-ae-bw.png` |
+| Slide footer / email sig | 200×200 px screen | `qr-io-wtp-ae-brand.png` (resize) |
+
+Min printed QR module size: **0.5 mm** per cell. Anything smaller and phone cameras struggle.
+
+---
+
+## Replacing the initials placeholder with a real photo
+
+The hero currently shows initials `IO` in Playfair serif (cream + gold ring). Once a portrait is available:
+
+1. Save a square JPG/WebP at `ilia-400.jpg` (400×400) and `ilia-800.jpg` (800×800) in the repo root.
+2. Edit `index.html`: replace the `<div class="avatar avatar-initials">IO</div>` block with:
+   ```html
+   <img class="avatar" src="ilia-400.jpg" srcset="ilia-400.jpg 1x, ilia-800.jpg 2x" alt="Ilia Ostashov" width="100" height="100" decoding="async">
+   ```
+3. Commit + push. Cloudflare Pages auto-rebuilds.
+
+---
+
+## How to update the page
+
+```bash
+# edit index.html, then:
+git add index.html && git commit -m "..." && git push
+```
+
+Cloudflare Pages auto-builds on push (project: `wtp-io`).
+GitHub Pages mirror also rebuilds automatically.
+
+URL `https://io.wtp.ae` does NOT change — QR codes and NFC tags stay valid forever.
+
+---
+
+## Files
+
+```
+wtp-io/
+├── index.html              # the page itself
+├── ilia-ostashov.vcf       # vCard for "Save Contact"
+├── README.md               # this file
+└── qr/
+    ├── qr-io-wtp-ae-card.png    # print-ready (with URL + name caption)
+    ├── qr-io-wtp-ae-brand.png   # cream + W monogram
+    ├── qr-io-wtp-ae-bw.png      # plain black on white
+    └── qr-io-wtp-ae-clean.png   # cream, no logo
+```
