@@ -56,6 +56,45 @@
       gap: 40px;
     }
 
+    /* Language switcher */
+    .lang-switch {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: -22px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .lang-switch a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .lang-switch a:hover {
+      color: var(--text-primary);
+    }
+
+    .lang-switch a[aria-current="page"] {
+      color: var(--accent-gold-deep);
+      border-bottom-color: var(--accent-gold);
+      pointer-events: none;
+    }
+
+    .lang-switch .lang-sep {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+      opacity: 0.6;
+    }
+
     /* Eyebrow */
     .eyebrow {
       font-size: 11px;
@@ -450,10 +489,19 @@
     }
   </style>
   <link rel="canonical" href="https://io.wtp.ae/">
+  <link rel="alternate" hreflang="en" href="https://io.wtp.ae/">
+  <link rel="alternate" hreflang="ru" href="https://io.wtp.ae/ru/">
+  <link rel="alternate" hreflang="x-default" href="https://io.wtp.ae/">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "ProfessionalService", "@id": "https://wtp.ae/#organization", "name": "WTP", "legalName": "WTP — Wellcome to Paradise", "url": "https://wtp.ae", "email": "hello@wtp.ae", "telephone": "+971 600 575-294", "address": {"@type": "PostalAddress", "streetAddress": "Dubai Media City, Arenco Tower, Office 1207", "addressLocality": "Dubai", "addressCountry": "AE"}, "sameAs": ["https://www.linkedin.com/company/welcome-to-paradise-professional-services", "https://t.me/wtpbrokers"]}, {"@type": "Person", "@id": "https://wtp.ae/about/team#ilya", "name": "Ilia Ostashov", "jobTitle": "Founder & Private Client Advisor", "description": "Ilia Ostashov — Founder & Private Client Advisor at WTP. UAE-based system for entrepreneurs, investors and HNWI: banking, real estate, structures, residency, asset protection.", "worksFor": {"@id": "https://wtp.ae/#organization"}, "url": "https://io.wtp.ae/", "image": "https://io.wtp.ae/ilia-800.jpg", "sameAs": ["https://io.wtp.ae/", "https://wtp.ae/about/team"]}, {"@type": "ProfilePage", "@id": "https://io.wtp.ae/#webpage", "url": "https://io.wtp.ae/", "name": "Ilia Ostashov — Founder & Private Client Advisor, WTP", "description": "Ilia Ostashov — Founder & Private Client Advisor at WTP. UAE-based system for entrepreneurs, investors and HNWI: banking, real estate, structures, residency, asset protection.", "mainEntity": {"@id": "https://wtp.ae/about/team#ilya"}, "about": {"@id": "https://wtp.ae/#organization"}, "inLanguage": "en"}]}</script>
 </head>
 <body>
   <main class="page">
+
+    <nav class="lang-switch" aria-label="Language">
+      <a href="./" aria-current="page">EN</a>
+      <span class="lang-sep" aria-hidden="true"></span>
+      <a href="ru/" lang="ru" hreflang="ru">RU</a>
+    </nav>
 
     <p class="eyebrow">WTP &nbsp;·&nbsp; UAE Execution Partner</p>
 
